@@ -115,12 +115,13 @@ function createAndSendCardDiscord {
         Clear-Variable jsonbody, embeds -ErrorAction SilentlyContinue
         # Generate the body hashtable and conver to JSON to send to webhook
         $jsonBody = @{
-            embeds       = @(
+            embeds     = @(
                 @{
-                    title     = "$($game.BGAGameName) on BGA"
-                    url       = "$($game.BGALinkToGame)"
-                    color     = 5898646
-                    fields    = @(
+                    title      = "$($game.BGAGameName) on BGA"
+                    url        = "$($game.BGALinkToGame)"
+                    color      = 5898646
+                    avatar_url = "https://x.boardgamearena.net/data/themereleases/240320-1000/img/logo/waiting.gif"
+                    fields     = @(
                         @{
                             name   = "BGG link"
                             value  = "$($game.BGGURL)"
@@ -131,13 +132,13 @@ function createAndSendCardDiscord {
                             value = "$($game.linktoForumPost)"
                         }
                     )
-                    thumbnail = @{
+                    thumbnail  = @{
                         url = "$($game.gamePictureURL)"
                     }
                 }
             )
-            "username"   = "BGA Release Bot"
-            "avatar_url" = "https://x.boardgamearena.net/data/themereleases/240320-1000/img/logo/waiting.gif"
+            username   = "BGA Release Bot"
+            avatar_url = "https://x.boardgamearena.net/data/themereleases/240320-1000/img/logo/waiting.gif"
         } | ConvertTo-Json -Depth 100
 
         Foreach ($webhook in $discordWebHook) {
